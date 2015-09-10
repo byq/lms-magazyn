@@ -1,0 +1,40 @@
+--- lms/modules/quicksearch.php	2015-08-04 14:56:32.000000000 +0200
++++ htdocs/modules/quicksearch.php	2015-08-04 15:40:25.000000000 +0200
+@@ -77,7 +77,7 @@ if(!empty($_POST['qscustomer'])) {
+ } elseif(!empty($_GET['what'])) {
+ 	$search = urldecode(trim($_GET['what']));
+ 	$mode = $_GET['mode'];
+-}
++} 
+ 
+ $sql_search = $DB->Escape("%$search%");
+ 
+@@ -461,6 +461,28 @@ switch($mode)
+ 			$target = '?m=customerinfo&id=' . $cid;
+ 		}
+ 	break;
++//Added for STCK by Sarenka - MAXCON
++	case 'supplier':
++		if (ConfigHelper::getConfig('phpui.stock'))
++			require_once('stock/quicksearch-supplier.php');
++	break;
++	case 'product':
++		if (ConfigHelper::getConfig('phpui.stock'))
++			require_once('stock/quicksearch-product.php');
++	break;
++	case 'productinv':
++		if (ConfigHelper::getConfig('phpui.stock'))
++			require_once('stock/quicksearch-productinv.php');
++	break;
++	case 'productprice':
++		 if (ConfigHelper::getConfig('phpui.stock'))
++		 	require_once('stock/quicksearch-productprice.php');
++	break;
++	case 'productwarranty':
++		if (ConfigHelper::getConfig('phpui.stock'))
++			require_once('stock/quicksearch-productwarranty.php');
++	break;
++//END STCK
+ }
+ 
+ $SESSION->redirect(!empty($target) ? $target : '?'.$SESSION->get('backto'));

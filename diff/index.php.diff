@@ -1,0 +1,13 @@
+--- lms/index.php	2015-08-04 14:56:32.000000000 +0200
++++ htdocs/index.php	2015-08-05 13:12:45.000000000 +0200
+@@ -195,6 +195,10 @@ $SMARTY->assignByRef('_language', $LMS->
+ 
+ $error = NULL; // initialize error variable needed for (almost) all modules
+ 
++//Load stock module class and defs
++require('stock/LMSST.class.php');
++$LMSST = new LMSST($DB, $AUTH, $CONFIG, $LMS);
++
+ // Load menu
+ 
+ if(!$layout['popup'])

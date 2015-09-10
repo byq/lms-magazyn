@@ -1,0 +1,186 @@
+{include file="header.html"}
+<!--// $Id: printindex.html,v 1.103 2011/12/06 20:56:44 chilek Exp $ //-->
+<H1>{$layout.pagetitle}</H1>
+{include file="calendar_js.html"}
+<P><FORM method="POST" name="printinventory" id="printinventory" action="?m=printstock&type=inventory" target="_blank">
+<INPUT type="submit" class="hiddenbtn">
+<TABLE width="100%" cellpadding="3">
+	<TR class="DARK">
+		<TD class="fleftu" width="1%">
+			<IMG src="img/stck.png" alt="">
+		</TD>
+		<TD class="frightu" width="99%">
+			<B>{t}Inventory{/t}</B>
+		</TD>
+	</TR>
+	<TR class="LIGHT">
+		<TD class="flr" width="100%" colspan="2">
+			<TABLE width="100%">
+				<TR>
+					<TD width="30%" nowrap>
+					    <TABLE>
+						<TR>
+						    <TD width="1%"><IMG src="img/stck.png" alt=""></TD>
+						    <TD width="1%" nowrap><B>{t}Warehouse{/t}:</B></TD>
+						    <TD width="98%">
+						    	<select name="params[warehouse]">
+								<option value="">{t}- select warehouse -{/t}</option>
+								{foreach from=$warehouses item=wh}
+								<option value="{$wh.id}"{if $wh.def && !$stockfl.warehouse} SELECTED{/if}{if $stockfl.warehouse eq $wh.id} SELECTED{/if}>{$wh.name}</option>
+								{/foreach}
+							</select>
+						    </TD>
+						</TR>
+						<TR>
+							<TD width="1%" nowrap><IMG src="img/calendar.gif" alt=""></TD>
+							<TD width="1%" nowrap><B>{t}Balance date:{/t}</B></TD>
+							<TD width="98%" nowrap>
+								<INPUT TYPE="text" NAME="params[day]" SIZE="10" MAXSIZE="10" OnClick="javascript:cal12.popup();" {tip text="Enter date in 'yyyy/mm/dd' format or click to choose it from calendar"}>
+							</TD>
+						</TR>
+					    </TABLE>
+					</TD>
+					<TD width="1%"><IMG src="img/view.gif" alt=""></TD>
+					<TD width="1%"><B>{t}Sorting:{/t}</B></TD>
+					<TD>
+					    <TABLE width="1%" {tip text="Select sorting direction and criteria"}>
+						<TR>
+						    <TD width="100%" nowrap>
+							<SELECT SIZE="1" name="params[order]">
+							    <OPTION value="mname" SELECTED>{t}Manufacturer{/t}</OPTION>
+							    <OPTION value="id">{t}Id{/t}</OPTION> 
+							    <OPTION value="pname">{t}Name{/t}</OPTION> 
+							    <OPTION value="gname">{t}Group{/t}</OPTION> 
+							</SELECT>
+						    </TD>
+						</TR>
+						<TR>
+						    <TD width="100%" nowrap>
+							<SELECT SIZE="1" name="params[direction]">
+							    <OPTION value="asc" SELECTED>{t}ascending{/t}</OPTION>
+							    <OPTION value="desc">{t}descending{/t}</OPTION> 
+							</SELECT>
+						    </TD>
+						</TR>
+					    </TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR class="LIGHT">
+		<TD class="fbottomu" width="100%" colspan="2" align="right">
+			<A href="javascript:document.printinventory.submit();">{t}Print{/t} <IMG src="img/print.gif" alt="" hspace="2"></A>
+		</TD>
+	</TR>
+</TABLE>
+</FORM>
+</P>
+<P><FORM method="POST" name="printstocklistbrep" id="printstocklistbrep" action="?m=printstock&type=brep" target="_blank">
+<INPUT type="submit" class="hiddenbtn">
+<TABLE width="100%" cellpadding="3">
+<TR class="DARK">
+	<TD class="fleftu" width="1%">
+		<IMG src="img/money.gif" alt="">
+	</TD>
+	<TD class="frightu" width="99%">
+		<B>{t}Buy report{/t}</B>
+	</TD>
+</TR>
+<TR class="LIGHT">
+	<TD class="flr" width="100%" colspan="2">
+		<TABLE width="100%">
+			<TR>
+				<TD width="30%" nowrap>
+					<TABLE>
+						<TR>
+							<TD width="1%"><IMG src="img/producer.gif" alt=""></TD>
+							<TD width="1%" nowrap><B>{t}Manufacturer{/t}:</B></TD>
+							<TD width="98%">
+								<select name="params[manufacturer]">
+									<option value="">{t}- select manufacturer -{/t}</option>
+									{foreach from=$manufacturers item=mf}
+									<option value="{$mf.id}">{$mf.name}</option>
+									{/foreach}
+								</select>
+							</TD>
+						</TR>
+						<TR>
+							<TD width="1%"><IMG src="img/nodegroup.gif" alt=""></TD>
+							<TD width="1%" nowrap><B>{t}Group:{/t}</B></TD>
+							<TD width="98%">
+								<select name="params[group]">
+									<option value="">{t}- select group -{/t}</option>
+									{foreach from=$groups item=g}
+									<option value="{$g.id}">{$g.name}</option>
+									{/foreach}
+								</select>
+							</TD>
+						</TR>
+					</TABLE>
+				</TD>
+				<TD>
+					<TABLE width="30%">
+						<TR>
+							<TD width="1%" nowrap><IMG src="img/calendar.gif" alt=""></TD>
+							<TD width="1%" nowrap><B>{t}Start date:{/t}</B></TD>
+							<TD width="98%" nowrap>
+								<INPUT TYPE="text" NAME="params[sday]" SIZE="10" MAXSIZE="10" OnClick="javascript:cal13.popup();" {tip text="Enter date in 'yyyy/mm/dd' format or click to choose it from calendar"}>
+							</TD>
+						</TR>
+						<TR>
+							<TD width="1%" nowrap><IMG src="img/calendar.gif" alt=""></TD>
+							<TD width="1%" nowrap><B>{t}End date:{/t}</B></TD>
+							<TD width="98%" nowrap>
+								<INPUT TYPE="text" NAME="params[eday]" SIZE="10" MAXSIZE="10" OnClick="javascript:cal14.popup();" {tip text="Enter date in 'yyyy/mm/dd' format or click to choose it from calendar"}>
+							</TD>
+						</TR>
+					</TABLE>
+				</TD>
+				<!--<TD width="1%"><IMG src="img/view.gif" alt=""></TD>
+				<TD width="1%"><B>{t}Sorting:{/t}</B></TD>
+				<TD>
+					<TABLE width="1%" {tip text="Select sorting direction and criteria"}>
+						<TR>
+							<TD width="100%" nowrap>
+								<SELECT SIZE="1" name="params[order]">
+									<OPTION value="mname" SELECTED>{t}Manufacturer{/t}</OPTION>
+									<OPTION value="id">{t}Id{/t}</OPTION>
+									<OPTION value="pname">{t}Name{/t}</OPTION>
+									<OPTION value="gname">{t}Group{/t}</OPTION>
+								</SELECT>
+							</TD>
+						</TR>
+						<TR>
+							<TD width="100%" nowrap>
+								<SELECT SIZE="1" name="params[direction]">
+									<OPTION value="asc" SELECTED>{t}ascending{/t}</OPTION>
+									<OPTION value="desc">{t}descending{/t}</OPTION>
+								</SELECT>
+							</TD>
+						</TR>
+					</TABLE>
+				</TD>-->
+			</TR>
+		</TABLE>
+	</TD>
+</TR>
+<TR class="LIGHT">
+	<TD class="fbottomu" width="100%" colspan="2" align="right">
+		<A href="javascript:document.printstocklistbrep.submit();">{t}Print{/t} <IMG src="img/print.gif" alt="" hspace="2"></A>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+</P>
+<SCRIPT type="text/javascript">
+<!--
+var cal12 = new calendar(document.printinventory.elements['params[day]']);
+cal12.time_comp = false;
+var cal13 = new calendar(document.printstocklistbrep.elements['params[sday]']);
+cal13.time_comp = false;
+var cal14 = new calendar(document.printstocklistbrep.elements['params[eday]']);
+cal14.time_comp = false;
+//-->
+</SCRIPT>
+{include file="footer.html"}

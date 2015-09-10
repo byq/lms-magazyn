@@ -1,0 +1,17 @@
+{include file="header.html"}
+<H1>{$layout.pagetitle}</H1>
+<TABLE WIDTH="100%" CELLPADDING="3">
+	<TR>
+		<TD WIDTH="100%">
+			{include file="stck/stckreceivenoteinfobox.html"}
+		</TD>
+	</TR>
+</TABLE>
+<TABLE WIDTH="100%" CELLPADDING="3">
+	<TR>
+		<TD WIDTH="100%">
+			{include file="stck/stckstocklistbox.html" module="stckreceivenoteinfo&id="|cat:$receivenoteinfo.id}
+		</TD>
+	</TR>
+</TABLE>
+{include file="footer.html"}

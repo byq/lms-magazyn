@@ -1,0 +1,33 @@
+--- lms/templates/default/invoice/invoicenew.html	2015-08-04 14:56:32.000000000 +0200
++++ htdocs/templates/default/invoice/invoicenew.html	2015-08-04 16:12:35.000000000 +0200
+@@ -3,6 +3,12 @@
+ {block name=module_content}
+ <!--// $Id$ //-->
+ <H1>{$layout.pagetitle}</H1>
++<!-- Added for STACK by Sarenka MAXCON -->
++<script type="text/javascript" src="/stock/js/jquery-1.7.1.min.js"></script>
++<script type="text/javascript" src="/stock/js/jquery.simplemodal.js"></script>
++<link href="/stock/js/jquery.simplemodal.css" rel="stylesheet" type="text/css">
++<script type="text/javascript" src="/stock/js/common.js"></script>
++<!-- END STCK -->
+ {if $newinvoice}
+ <SCRIPT type="text/javascript">
+ <!--
+@@ -323,7 +329,8 @@ window.open('?m=invoice&id={$newinvoice.
+ 			{count($contents) + 1}.
+ 		</TD>
+ 		<TD style="width: 92%;" class="nobr">
+-			<INPUT type="text" name="name" size="40" style="width:300px" {tip text="Enter description or select tariff from the list"}><BR>
++			<INPUT type="text" name="name" size="40" style="width:300px" ID="pinput" {tip text="Enter description or select tariff from the list"}><BR><!-- Added for STCK by Sarenka MAXCON - ID="pinput" -->
++			<INPUT TYPE="hidden" NAME="stckproductid" ID="pid"><!-- Added for STCK by Sarenka MAXCON -->
+ 			<SELECT size="1" name="ttariffid" style="width: 300px" onchange="setItem(document.additem.ttariffid.value)" {tip text="Enter description or select tariff from the list"}>
+ 				<OPTION value="0">-</OPTION>
+ 				{foreach from=$tariffs item=tariff}
+@@ -457,6 +464,7 @@ deadline_callback = function(val) {
+ }
+ var cal3 = new calendar(deadline_callback);
+ cal3.time_comp = false;
++new AutoSuggest(document.getElementById('additemlist'),document.getElementById('pinput'),'?m=quicksearch&ajax=1&mode=productinv&what=',0);//Added for STCK by Sarenka MAXCON
+ document.forms['setcustomer'].elements['invoice[number]'].focus();
+ //-->
+ </SCRIPT>

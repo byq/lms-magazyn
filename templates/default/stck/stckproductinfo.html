@@ -1,0 +1,18 @@
+{include file="header.html"}
+<!--// $Id: netdevinfo.html,v 1.13 2008/01/19 19:56:45 alec Exp $ //-->
+<H1>{$layout.pagetitle}</H1>
+<TABLE WIDTH="100%" CELLPADDING="3">
+	<TR>
+		<TD WIDTH="100%">
+			{include file="stck/stckproductinfobox.html"}
+		</TD>
+	</TR>
+</TABLE>
+<TABLE WIDTH="100%" CELLPADDING="3">
+        <TR>
+		<TD WIDTH="100%">
+			{include file="stck/stckstocklistbox.html" module="stckproductinfo&id="|cat:$productinfo.id}
+		</TD>
+	</TR>
+</TABLE>
+{include file="footer.html"}
