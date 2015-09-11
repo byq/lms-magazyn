@@ -4,6 +4,6 @@ aby dodac magazyn do LMS nalezy:
 1. dodac do bazy danych nowe tabele z LMSST.sql
 2. przegrac podkatalogi img, modules, stock, templates do root katalogu instalacji LMS
 3. zaaplikowac diffy z podkatalogu diff
-4. w konfiguracji lmsui podpiac menu magazynu
+4. w konfiguracji lmsui podpiac menu magazynu (custom_menu [phpui] stock/menu.php) 
 5. dodac uprawnienia (accesstable.php)
-
+6. aktywowac magazyn w konfiguracji lmsui (stock [phpui] 1)
