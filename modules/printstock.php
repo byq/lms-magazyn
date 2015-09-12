@@ -84,10 +84,11 @@ switch($type)
 			$params['totalvg'] += $p['valuegross'];
 		}
 		
+		$SMARTY->assign('type', $type);
 		$SMARTY->assign('params', $params);
 		$SMARTY->assign('productlist', $pgl);
 
-		$SMARTY->display('printstocklist.html');
+		$SMARTY->display('stck/printstocklist.html');
 	}
 
 	break;
@@ -138,6 +139,7 @@ switch($type)
 				$params['totalvg'] += $p['valuegross'];
 			}
 
+			$SMARTY->assign('type', $type);
 			$SMARTY->assign('params', $params);
 			$SMARTY->assign('productlist', $pgl);
 			

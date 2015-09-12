@@ -3,7 +3,11 @@
 <TABLE WIDTH="100%">
 	<TR>
 		<TD WIDTH="1%" VALIGN="TOP" ALIGN="LEFT" NOWRAP>
+{if $type eq 'inventory'}
 			<H1>{t}Inventory for date{/t} {$params.rdate|date_format:"%Y/%m/%d"}</h1>
+{else}
+			<H1>{t}Buy report{/t} {$params.sdate|date_format:"%Y/%m/%d"} - {$params.edate|date_format:"%Y/%m/%d"}</h1>
+{/if}
 		</TD>
 		<TD WIDTH="99%" VALIGN="TOP" NOWRAP>
 			<P class="hdf"><B>{$layout.pagetitle}</B>
