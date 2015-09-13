@@ -10,10 +10,12 @@ $SESSION->save('sglo', $o);
 
 //$productlist = $LMSST->ProductGetList($o);
 
-// dodac wyciaganie il. szt. danego produktu oraz ich wartosc
-$productlist = $DB->GetAll('SELECT id AS gid, name AS gname, comment AS gcomment
-        FROM stck_products
-        WHERE deleted = 0');
+$productlist = $DB->GetAll('SELECT p.id AS gid, p.name AS gname, p.comment AS gcomment, 
+	COALESCE(SUM(s.pricebuynet), 0) as valuenet,  COALESCE(SUM(s.pricebuygross), 0) as valuegross, COUNT(s.id) as count
+        FROM stck_products p
+	LEFT JOIN stck_stock s ON s.productid = p.id
+        WHERE p.deleted = 0 AND s.pricesell IS NULL
+        GROUP BY(p.id)');
 
 $productlist['total'] = sizeof($productlist);
 $productlist['order'] = $order;
