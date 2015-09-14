@@ -425,7 +425,7 @@ class LMSST {
 	/* PRODUCTS */
 
 	function ProductAdd($pa) {
-		if ($this->DB->Execute("INSERT INTO stck_products(manufacturerid, groupid, taxid, typeid, quantityid, quantitycheck, ean, quantity, name, creationdate, creatorid) VALUES(?, ?, ?, ?, ?, IFNULL(?, 0), ?, ?, ?, ?NOW?,?)", array(
+		if ($this->DB->Execute("INSERT INTO stck_products(manufacturerid, groupid, taxid, typeid, quantityid, quantitycheck, ean, quantity, name, comment, creationdate, creatorid) VALUES(?, ?, ?, ?, ?, IFNULL(?, 0), ?, ?, ?, ?, ?NOW?,?)", array(
 			$pa['manufacturerid'],
 			$pa['groupid'],
 			$pa['taxid'],
@@ -435,6 +435,7 @@ class LMSST {
 			$pa['ean'],
 			$pa['quantity'],
 			$pa['name'],
+			$pa['comment'],
 			$this->AUTH->id))) {
 			return $this->DB->GetLastInsertID('stck_products');
 		}
