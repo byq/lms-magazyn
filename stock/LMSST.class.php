@@ -325,18 +325,19 @@ class LMSST {
 		($direction=='desc') ? $direction = 'desc' : $direction = 'asc';
 		switch($order) {
 			case 'id':
-				$sqlord = ' ORDER BY gid';
+				$sqlord = ' ORDER BY id';
 				break;
 			case 'name':
-				$sqlord = ' ORDER BY gname';
+				$sqlord = ' ORDER BY name';
 				break;
 			default:
-				$sqlord = ' ORDER BY gname';
+				$sqlord = ' ORDER BY name';
 				break;
 		}
                 if ($ggl = $this->DB->GetAll('SELECT id AS gid, name AS gname, comment AS gcomment 
                         FROM stck_groups 
-			WHERE deleted = 0')) {
+			WHERE deleted = 0'
+			.($sqlord != '' ? $sqlord.' '.$direction : ''))) {
 				$ggl['total'] = sizeof($ggl);
 				$ggl['order'] = $order;
 				$ggl['direction'] = $direction;
