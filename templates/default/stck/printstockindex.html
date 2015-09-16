@@ -123,16 +123,15 @@
 					<TABLE width="30%">
 						<TR>
 							<TD width="1%" nowrap><IMG src="img/calendar.gif" alt=""></TD>
-							<TD width="1%" nowrap><B>{t}Start date:{/t}</B></TD>
-							<TD width="98%" nowrap>
+							<TD width="1%" nowrap><B>{trans("Period:")}</B>&nbsp;{trans("From")}&nbsp;
 								<INPUT TYPE="text" NAME="params[sday]" SIZE="10" MAXSIZE="10" OnClick="javascript:cal13.popup();" {tip text="Enter date in 'yyyy/mm/dd' format or click to choose it from calendar"}>
+							</TD>
+							<TD width="98%" nowrap>&nbsp;{trans("To")}&nbsp;
+								<INPUT TYPE="text" NAME="params[eday]" SIZE="10" MAXSIZE="10" OnClick="javascript:cal14.popup();" {tip text="Enter date in 'yyyy/mm/dd' format or click to choose it from calendar"}>
 							</TD>
 						</TR>
 						<TR>
-							<TD width="1%" nowrap><IMG src="img/calendar.gif" alt=""></TD>
-							<TD width="1%" nowrap><B>{t}End date:{/t}</B></TD>
 							<TD width="98%" nowrap>
-								<INPUT TYPE="text" NAME="params[eday]" SIZE="10" MAXSIZE="10" OnClick="javascript:cal14.popup();" {tip text="Enter date in 'yyyy/mm/dd' format or click to choose it from calendar"}>
 							</TD>
 						</TR>
 					</TABLE>
